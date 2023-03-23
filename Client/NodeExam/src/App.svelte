@@ -9,22 +9,22 @@ import Navbar from "./components/Navbar.svelte";
 
 <main>
  
-<Router>
-  <Navbar></Navbar>
-  <Route path="/">
-    <Home></Home>
-  </Route>
-  <Route path="/characters">
-    <Characters></Characters>
-  </Route>
-  <Route path="/contact">
-    <Contact></Contact>
-  </Route>
-  <Route path="/signin">
-    <SignIn></SignIn>
-  </Route>
-  
-</Router>
+  <Router>
+    <Navbar></Navbar>
+    <Route path="/">
+      <Home></Home>
+    </Route>
+    <Route path="/characters">
+      <Characters></Characters>
+    </Route>
+    <Route path="/contact">
+      <Contact></Contact>
+    </Route>
+    <Route path="/signin">
+      <SignIn></SignIn>
+    </Route>
+    
+  </Router>
 </main>
 
 <style>
