@@ -2,8 +2,8 @@
 import Home from "./Pages/home/Home.svelte";
 import {Route, Router} from "svelte-navigator";
 import Characters from "./Pages/characters/Characters.svelte";
-import Contact from "./Pages/characters/Characters.svelte";
-import SignIn from "./Pages/characters/Characters.svelte";
+import Contact from "./Pages/contact/Contact.svelte";
+import SignIn from "./Pages/signIn/SignIn.svelte";
 import Navbar from "./components/Navbar.svelte";
 </script>
 
