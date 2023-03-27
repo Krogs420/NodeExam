@@ -7,6 +7,7 @@ const router = Router();
 router.post("/mail", async (req, res) => {
   const { name, mail, message } = req.body;
 
+  console.log("Hello")
   try {
     // Create a transporter object with SMTP settings
     let testAccount = await nodemailer.createTestAccount();
@@ -18,6 +19,9 @@ router.post("/mail", async (req, res) => {
         auth: {
             user: testAccount.user,
             pass: testAccount.pass
+        },
+        tls: {
+            rejectUnauthorized: false // allow self-signed certificates
         }
     });
 

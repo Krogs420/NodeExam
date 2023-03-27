@@ -4,7 +4,7 @@
     let message = "";
   
     async function sendMail() {
-      
+      console.log("HEllo")
       const url = "http://localhost:8081/mail";
       const response = await fetch(url, {
         method: "POST",
@@ -20,11 +20,11 @@
     </div>
     <div class="background-image">
       <div class="container">
-        <form>
+        <form on:submit|preventDefault={sendMail} id="contact_form" method="POST" action="/contact">
           <input type="name" bind:value={name} placeholder="Name" />
           <input type="email" bind:value={mail} placeholder="Email" />
           <textarea bind:value={message} placeholder="Message"></textarea>
-          <button on:click={sendMail}>Send mail</button>
+          <button type="submit">Send mail</button>
         </form>
       </div>
     </div>

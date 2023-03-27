@@ -3,10 +3,11 @@ import cors from "cors";
 import ContactRouter from "./routers/ContactRouter.js";
 
 const app = express();
+app.use(cors);
 
 app.use(express.json());
 app.use(ContactRouter);
-app.use(cors)
+
 
 const PORT = process.env.PORT || 8081;
 const server = app.listen(PORT, (error) => {
