@@ -4,7 +4,7 @@ import nodemailer from "nodemailer";
 const router = Router();
 
 // POST route for sending email
-router.post("/contact", async (req, res) => {
+router.post("/mail", async (req, res) => {
   const { name, mail, message } = req.body;
 
   try {

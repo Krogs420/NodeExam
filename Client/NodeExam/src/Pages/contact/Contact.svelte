@@ -3,12 +3,13 @@
     let mail = "";
     let message = "";
   
-    async function sendEmail() {
+    async function sendMail() {
+      
       const url = "http://localhost:8081/mail";
       const response = await fetch(url, {
         method: "POST",
         headers: { "Content-type": "application/json" },
-        body: JSON.stringify({ mail }),
+        body: JSON.stringify({ name, mail, message }),
       });
     }
   </script>
@@ -23,7 +24,7 @@
           <input type="name" bind:value={name} placeholder="Name" />
           <input type="email" bind:value={mail} placeholder="Email" />
           <textarea bind:value={message} placeholder="Message"></textarea>
-          <button on:click={sendEmail}>Send mail</button>
+          <button on:click={sendMail}>Send mail</button>
         </form>
       </div>
     </div>
