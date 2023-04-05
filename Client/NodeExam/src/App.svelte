@@ -10,7 +10,6 @@ import Navbar from "./components/Navbar.svelte";
 <main>
  
   <Router>
-    <Navbar></Navbar>
     <Route path="/">
       <Home></Home>
     </Route>

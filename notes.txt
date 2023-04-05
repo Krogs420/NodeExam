@@ -1,0 +1,11 @@
+db.execute(`CREATE TABLE IF NOT EXISTS ninjas(
+    ninja_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR (255) NOT NULL,
+    age INTEGER NOT NULL,
+    nation VARCHAR(255) NOT NULL,
+    jutsu VARCHAR (255) NOT NULL,
+    hokage BOOLEAN NOT NULL,
+    CONSTRAINT fk_users_ninja FOREIGN KEY (id) REFERENCES users(id) ON DELETE CASCADE
+);`); 
+
+    db.execute(`INSERT INTO ninjas(id, name, age, nation, jutsu, hokage) VALUE (?, ?, ?, ?, ?, ?);`, [1, "Zuko", 69, "Fire", "Fireball", false]);
