@@ -2,12 +2,14 @@ import * as dotenv from "dotenv";
 dotenv.config();
 import db from "./connection.js";
 import {encryptPassword} from "../util/encryption.js";
+import e from "express";
 
 const isInDeleteMode = true;
 
-if (isInDeleteMode) {
-    db.execute(`DROP TABLE IF EXISTS users;`);
-}
+db.execute(`DROP TABLE IF EXISTS ninjas;`);
+db.execute(`DROP TABLE IF EXISTS users;`);
+
+
 
 db.execute(`CREATE TABLE IF NOT EXISTS users(
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -30,9 +32,9 @@ db.execute(`CREATE TABLE IF NOT EXISTS ninjas(
 
 if (isInDeleteMode) {
     //users
-    db.execute(`INSERT INTO users(mail, user_name, password, admin) VALUES (?, ?, ?, ?);`, ["bingo@bongo.com", "Minato", "123", true]);
-    db.execute(`INSERT INTO users(mail, user_name, password, admin) VALUES (?, ?, ?, ?);`, ["bingo@spongo.com", "Sasuke", "123", false]);
-    db.execute(`INSERT INTO users(mail, user_name, password, admin) VALUES (?, ?, ?, ?);`, ["bingo@flongo.com", "Naruto", "123", false]);
+    db.execute(`INSERT INTO users(mail, user_name, password, admin) VALUES (?, ?, ?, ?);`, [process.env.ADMIN_MAIL, "Minato", await encryptPassword(process.env.ADMIN_PASSWORD), true]);
+    db.execute(`INSERT INTO users(mail, user_name, password, admin) VALUES (?, ?, ?, ?);`, [process.env.USER_MAIL, "Sasuke", await encryptPassword(process.env.USER_PASSWORD), false]);
+    db.execute(`INSERT INTO users(mail, user_name, password, admin) VALUES (?, ?, ?, ?);`, [process.env.SECOND_USER_MAIL, "Naruto", await encryptPassword(process.env.SECOND_USER_PASSWORD), false]);
 
     db.execute(`INSERT INTO ninjas(name, age, nation, jutsu, hokage, user_id) VALUE (?, ?, ?, ?, ?, ?);`, ["Zuko", 69, "Fire", "Fireball", false, 1]);
 
