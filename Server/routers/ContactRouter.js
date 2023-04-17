@@ -3,6 +3,10 @@ import nodemailer from "nodemailer";
 
 const router = Router();
 
+
+router.get("/mail", async (req, res) => {
+  res.send({message: "Hej"});
+})
 // POST route for sending email
 router.post("/mail", async (req, res) => {
   const { name, mail, message } = req.body;
@@ -29,10 +33,12 @@ router.post("/mail", async (req, res) => {
     let info = await transporter.sendMail({
       from: `"Naruto Customer Support" <sasuke@uchiha.dk>`,
       to: `${req.body.name} <${req.body.mail}>`,
+      subject: "hej",
       text: req.body.message,
     });
 
     console.log("Message sent: %s", info.messageId);
+    console.log("Preview url:%s", nodemailer.getTestMessageUrl(info));
     res.send("Message sent successfully!");
   } catch (error) {
     console.log(error);

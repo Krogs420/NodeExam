@@ -21,7 +21,7 @@
   
   <style>
     body {
-      font-family: sans-serif;
+      font-family: "ninjanaruto";
     }
   
     form {

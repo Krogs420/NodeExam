@@ -6,49 +6,56 @@
 <header>
   <h1>Naruto</h1>
 
-  <nav>
+  <!-- <nav>
     <Link to="/">Home</Link>
     <Link to="/contact">Contact</Link>
     <Link to="/signin">Sign In</Link>
     <Link to="/characters">Characters</Link>
-  </nav>
+  </nav> -->
 </header>
 
-<main>
-  <div class="background-image">
-    <div class="container">
-      <h1>Naruto</h1>
-    </div>
-  </div>
-</main>
-
 <body>
-  <p>Welcome !!</p>
+  <div>
+    <h1>Konohagakure</h1>
+  </div>
+  <div>
+    <p>
+      "Village Hidden in the Leaves" or "Hidden Leaf Village" is the hidden
+      village of the Land of Fire. As the village of one of the Five Great
+      Shinobi Countries, Konohagakure has a Kage as its leader known as the
+      Hokage, of which there have been seven in its history. Konoha resides deep
+      within a forest at the base of a mountain known as the Hokage Rock, which
+      has the faces of all those who have taken the office of Hokage engraved on
+      it. It is surrounded on all sides by enormous walls. While generally seen
+      as the most powerful of the ninja villages, Konoha has enjoyed many years
+      of relative peace and stability.
+    </p>
+  </div>
 </body>
 
 <style>
+  @font-face {
+    font-family: "ninjanaruto";
+    src: url(../../../public/njnaruto.ttf);
+  }
+
   /* Global styles */
   body {
     margin: 0;
-    font-family: sans-serif;
+    font-family: "ninjanaruto";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-text-stroke: 1px black;
   }
 
   /* Header styles */
   header {
-    background-color: #333;
+    top: 0;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
-    padding: 10px;
-  }
-
-  nav {
-    font-family: "ninjanaruto";
-    text-align: center;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 800px;
-    margin: 0 auto;
-    text-decoration: none;
+    padding: 20px;
   }
 
   .background-image {
@@ -67,29 +74,16 @@
   }
 
   /* Container styles */
-  .container {
-    background-color: rgba(0, 0, 0, 0.7);
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-  }
 
   h1 {
     font-size: 3rem;
     margin: 0;
+    font-family: "ninjanaruto";
+    color: orange;
   }
 
   p {
     font-size: 16px;
     margin: 0;
   }
-
-  @font-face {
-    font-family: "ninjanaruto";
-    src: url(../../../public/njnaruto.ttf);
-  }
-
- 
 </style>

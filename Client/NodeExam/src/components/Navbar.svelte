@@ -3,12 +3,13 @@
 </script>
 
 <main>
-    <Router primary={false}>
+    <!-- <Router primary={false}>
         <nav>
             <Link to="/">HOME</Link>
             <Link to="/characters">Characters</Link>
             <Link to="/contact">Contact</Link>
             <Link to="/signin">Sign In</Link>
+            <Link to="/signin">Sign Up</Link>
         </nav>
-    </Router>
+    </Router> -->
 </main>
