@@ -10,7 +10,7 @@
 
 <main>
   <Router>
-   <!-- <div id="content">
+   <div id="content">
       <Navbar />
     </div>
     <Route path="/">
@@ -18,31 +18,35 @@
     </Route>
     <Route path="/characters">
       <Characters />
-    </Route> -->
+    </Route>
     <Route path="/contact">
       <Contact />
     </Route>
-    <!-- <Route path="/signin">
+    <Route path="/signin">
       <SignIn />
     </Route>
     <Route path="/signup">
       <SignUp />
-    </Route> -->
+    </Route>
     
   </Router>
   <div class="background-image" />
 </main>
 
 <style>
-  /* #content {
+  #content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
+    margin-top: -10px;
     padding: 10px;
     font-family: "ninjanaruto";
-  } */
+    font-size: 26px;
+    -webkit-text-stroke: 1px black;
+    display: inline;
+    padding-right: 30px;
+  }
 
   .background-image {
     position: fixed;

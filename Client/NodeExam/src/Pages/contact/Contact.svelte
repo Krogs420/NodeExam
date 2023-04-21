@@ -17,24 +17,11 @@
   }
 </script>
 
-<!-- <header>
-    <h1>Naruto</h1>
-  
-    <nav>
-      <Link to="/">Home</Link>
-      <Link to="/contact">Contact</Link>
-      <Link to="/signin">Sign In</Link>
-      <Link to="/characters">Characters</Link>
-    </nav>
-  </header> -->
-
-<!-- <div class="background-image" /> -->
-<!-- <div class="background-image" /> -->
 <Router primary={false}>
   <div>
-    <!-- <div class="header">
+    <div class="header">
       <h1>Contact Us</h1>
-    </div> -->
+    </div>
       <div class="container">
         <form
           on:submit|preventDefault={sendMail}
@@ -52,19 +39,9 @@
 </Router>
 
 <style>
-  /* Global styles */
-  body {
-    margin: 0;
-    padding: 20px;
-    background-color: #f0f5f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 
   /* Styling for the header */
   .header {
-    background-color: #1c2541;
     color: #fff;
     text-align: center;
     padding: 20px;
@@ -116,21 +93,6 @@
   ::placeholder {
     color: #999;
     font-size: 14px;
-  }
-
-  .background-image {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background-image: url("../../../public/NarutoBackground.jpeg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
   header {

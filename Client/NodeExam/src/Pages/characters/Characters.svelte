@@ -22,17 +22,6 @@
 </script>
 
 <main>
-  <div class="container">
-    <header>
-      <h1>Naruto</h1>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/contact">Contact</Link>
-        <Link to="/signin">Sign In</Link>
-        <Link to="/characters">Characters</Link>
-      </nav>
-    </header>
-  </div>
   <ul>
     {#each characters as character}
       <li>
@@ -49,6 +38,8 @@
     list-style: none;
     margin: 0;
     padding: 0;
+    font-family: "ninjanaruto";
+    -webkit-text-stroke: 1px black;
   }
 
   h1 {
@@ -75,14 +66,5 @@
     text-align: center;
     max-width: 800px;
     margin: 0 auto;
-  }
-
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #fff;
-    padding: 15px;
-    font-family: "ninjanaruto";
   }
 </style>
