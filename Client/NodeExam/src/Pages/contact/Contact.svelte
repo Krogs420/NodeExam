@@ -1,5 +1,4 @@
 <script>
-  import Header from "../../components/Header.svelte";
   import { Route, Router, Link } from "svelte-navigator";
 
   let name = "";

@@ -1,6 +1,6 @@
 import { response, Router } from "express";
 import bcrypt from "bcrypt";
-import db from "../database/connection_mysql.js"
+import db from "../database/Connection.js"
 const router = Router();
 
 router.get("/api/users", async (req, res) => {
@@ -23,14 +23,14 @@ router.post("/api/users", async (req, res) => {
     res.send({ data: rows });
 });
 
-router.post("/api/users/login", async (req, res) => {
+router.post("/login", async (req, res) => {
     const body = req.body;
     const [rows, fields] = await db.execute(`SELECT * FROM users WHERE mail = ?`, [body.mail]);
     const isTrue = await bcrypt.compare(body.password, rows[0].password);
     
     console.log(isTrue);
     if (isTrue) {
-        req.session.isLoggedin=true;
+        req.session.isLoggedin = true;
         res.send({ message: "Its a-okay" });
     } else {
         res.send({ message: "Its no good" });

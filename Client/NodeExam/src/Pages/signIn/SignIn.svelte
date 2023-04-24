@@ -1,29 +1,41 @@
 <script>
-  import Header from "../../components/Header.svelte";
   import { Route, Router, Link } from "svelte-navigator";
 
-  let email = "";
+  let mail = "";
   let password = "";
 
-  function handleSubmit() {
-    alert(`Email: ${email}\nPassword: ${password}`);
+  async function handleSubmit() {
+    const url = "http://localhost:8081/login";
+    const body = { 
+      mail: mail, 
+      password: password
+    }
+    try{
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(body),
+      });
+    } catch {
+      alert("!!ERROR!!")
+    }
   }
+
+  /* alert(`Email: ${email}\nPassword: ${password}`); */
 </script>
 
-<main>
-  <div>
-    <h1>Sign In</h1>
-  </div>
-  <form on:submit|preventDefault={handleSubmit}>
-    <label for="email">Email</label>
-    <input type="email" id="email" bind:value={email} required />
+<div>
+  <h1>Sign In</h1>
+</div>
+<form on:submit|preventDefault={handleSubmit}>
+  <label for="email">Email</label>
+  <input type="email" id="email" bind:value={mail} required />
 
-    <label for="password">Password</label>
-    <input type="password" id="password" bind:value={password} required />
+  <label for="password">Password</label>
+  <input type="password" id="password" bind:value={password} required />
 
-    <button type="submit">Sign In</button>
-  </form>
-</main>
+  <button type="submit">Sign In</button>
+</form>
 
 <style>
   form {
