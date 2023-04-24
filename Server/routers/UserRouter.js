@@ -1,6 +1,6 @@
 import { response, Router } from "express";
-import bcrypt from "bcrypt";
 import db from "../database/Connection.js"
+import bcrypt from "bcrypt";
 import {encryptPassword} from "../util/encryption.js";
 const router = Router();
 
@@ -27,29 +27,15 @@ router.post("/api/users", async (req, res) => {
 router.post("/login", async (req, res) => {
     const {mail, password} = req.body;
     const [rows, fields] = await db.execute(`SELECT * FROM users WHERE mail = ?`, [mail]);
-    const encrypted = await encryptPassword(password)
-    if (encrypted === rows[0].password) {
-        req.session.isLoggedin = true;
+    const encryptedPassword = rows[0].password;
+    const compare = await bcrypt.compare(password, encryptedPassword)
+    console.log(rows[0].password);
+    if (compare) {
+        //req.session.isLoggedin = true;
         res.send({ message: "Its a-okay" });
     } else {
         res.send({ message: "Its no good" });
     }
-    
-    /* if (mail === "admin@naruto.com" && password === "Narutoiscool") {
-        res.status(200).send({message: "Please work"});
-    } else {
-        res.status(401).send({message: "Please for the love of god work"});
-    } */
-    /*const [rows, fields] = await db.execute(`SELECT * FROM users WHERE mail = ?`, [body.mail]);
-    const isTrue = await bcrypt.compare(body.password, rows[0].password);
-    
-    console.log(isTrue);
-    if (isTrue) {
-        req.session.isLoggedin = true;
-        res.send({ message: "Its a-okay" });
-    } else {
-        res.send({ message: "Its no good" });
-    } */
 });
 
 router.get("/naruto", async (req, res) => {

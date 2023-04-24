@@ -19,6 +19,8 @@
         body: JSON.stringify(body),
       })
       navigate("/");
+      const data = await response.json();
+      console.log(data.message)
     } catch {
       alert("!!ERROR!!");
     }
