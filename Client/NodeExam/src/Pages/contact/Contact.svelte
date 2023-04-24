@@ -1,5 +1,7 @@
 <script>
   import { Route, Router, Link } from "svelte-navigator";
+  import * as Toastr from 'toastr';
+  import '../../../node_modules/toastr/build/toastr.css';
 
   let name = "";
   let mail = "";

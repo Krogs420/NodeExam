@@ -1,5 +1,7 @@
 <script>
   import { Route, Router, Link, useNavigate } from "svelte-navigator";
+  import * as Toastr from 'toastr';
+  import '../../../node_modules/toastr/build/toastr.css';
 
   const navigate = useNavigate();
 
@@ -17,12 +19,12 @@
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(body),
-      })
+      });
       navigate("/");
       const data = await response.json();
-      console.log(data.message)
+      console.log(data.message);
     } catch {
-      alert("!!ERROR!!");
+      Toastr.warning("Unable to sign in");
     }
   }
 

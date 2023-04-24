@@ -38,6 +38,11 @@ router.post("/login", async (req, res) => {
     }
 });
 
+router.post("/signup", async (req, res) => {
+    const {mail, username, password} = req.body;
+    const [rows, fields] = await db.execute(`INSERT INTO users(mail,user_name,password,admin) VALUES(?, ?, ?, ?);`, [mail, username, await encryptPassword(password), false]);
+});
+
 router.get("/naruto", async (req, res) => {
     const response = await fetch(`https://naruto-details-proxy.herokuapp.com/clan?name=uzumaki`);
     const data = await response.json();
