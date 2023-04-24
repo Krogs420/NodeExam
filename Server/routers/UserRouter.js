@@ -40,7 +40,12 @@ router.post("/login", async (req, res) => {
 
 router.post("/signup", async (req, res) => {
     const {mail, username, password} = req.body;
-    const [rows, fields] = await db.execute(`INSERT INTO users(mail,user_name,password,admin) VALUES(?, ?, ?, ?);`, [mail, username, await encryptPassword(password), false]);
+    try{
+        const [rows, fields] = await db.execute(`INSERT INTO users(mail,user_name,password,admin) VALUES(?, ?, ?, ?);`, [mail, username, await encryptPassword(password), false]);
+        res.send({ message: "Its veri nais"});
+    } catch {
+        res.send({ message: "Its not so veri nais" });
+    }
 });
 
 router.get("/naruto", async (req, res) => {

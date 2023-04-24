@@ -1,7 +1,7 @@
 <script>
   import { Route, Router, Link, useNavigate } from "svelte-navigator";
-  import * as Toastr from 'toastr';
-  import '../../../node_modules/toastr/build/toastr.css';
+  import * as Toastr from "toastr";
+  import "../../../node_modules/toastr/build/toastr.css";
 
   const navigate = useNavigate();
 
@@ -10,11 +10,12 @@
 
   async function handleSubmit() {
     const url = "http://localhost:8081/login";
-    const body = { 
-      mail: mail, 
-      password: password
-    }
-    try{
+    const body = {
+      mail: mail,
+      password: password,
+    };
+
+    try {
       const response = await fetch(url, {
         method: "POST",
         headers: { "Content-type": "application/json" },

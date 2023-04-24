@@ -4,6 +4,7 @@
   import "../../../node_modules/toastr/build/toastr.css";
 
   const navigate = useNavigate();
+
   let username = "";
   let mail = "";
   let password = "";
@@ -22,9 +23,9 @@
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(body),
       });
-      navigate("/");
       const data = await response.json();
       console.log(data.message);
+	  navigate("/");
     } catch {
       Toastr.warning("Unable to sign up");
     }
@@ -36,30 +37,33 @@
     <div class="signup">
       <form action="/signup" on:submit|preventDefault={checkEmailAndPas}>
         <label for="chk" aria-hidden="true">Sign up</label>
-        <input type="text" id="username" bind:value={username} required placeholder="User name" />
-        <input type="email" id="mail" bind:value={mail} required placeholder="Email" />
-        <input type="password" id="password" bind:value={password} required placeholder="Password" />
+        <input
+          type="text"
+          id="username"
+          bind:value={username}
+          required
+          placeholder="User name"
+        />
+        <input
+          type="email"
+          id="mail"
+          bind:value={mail}
+          required
+          placeholder="Email"
+        />
+        <input
+          type="password"
+          id="password"
+          bind:value={password}
+          required
+          placeholder="Password"
+        />
         <button type="submit" on:click={() => Toastr.success("You did it!")}>
           Signup
         </button>
       </form>
     </div>
   </div>
-
-  <!-- <div class="background-image">
-    <div class="header">
-      <h1>Login</h1>
-    </div>
-    <div class="container">
-      <form>
-        <input type="email" bind:value={mail} name="email" />
-
-        <input type="password" bind:value={password} name="password" />
-
-        <button on:click={checkEmailAndPas} type="button">Login</button>
-      </form>
-    </div>
-  </div> -->
 </body>
 
 <style>
