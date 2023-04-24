@@ -1,5 +1,7 @@
 <script>
-  import { Route, Router, Link } from "svelte-navigator";
+  import { Route, Router, Link, useNavigate } from "svelte-navigator";
+
+  const navigate = useNavigate();
 
   let mail = "";
   let password = "";
@@ -15,9 +17,10 @@
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(body),
-      });
+      })
+      navigate("/");
     } catch {
-      alert("!!ERROR!!")
+      alert("!!ERROR!!");
     }
   }
 
@@ -27,7 +30,7 @@
 <div>
   <h1>Sign In</h1>
 </div>
-<form on:submit|preventDefault={handleSubmit}>
+<form action="/login" on:submit|preventDefault={handleSubmit}>
   <label for="email">Email</label>
   <input type="email" id="email" bind:value={mail} required />
 
