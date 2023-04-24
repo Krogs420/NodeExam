@@ -19,7 +19,7 @@
 
 <Router primary={false}>
   <div>
-    <div class="header">
+    <div>
       <h1>Contact Us</h1>
     </div>
       <div class="container">
@@ -29,53 +29,92 @@
           method="POST"
           action="/contact"
         >
-          <input type="name" bind:value={name} placeholder="Your Name" />
-          <input type="email" bind:value={mail} placeholder="Your Email" />
-          <textarea bind:value={message} placeholder="Your Message" />
-          <button type="submit">Send Message</button>
+          <input type="name" bind:value={name} placeholder="Your Name. . ." />
+          <input type="email" bind:value={mail} placeholder="Your Email. . ." />
+          <textarea bind:value={message} placeholder="Your Message. . ." />
+          <button class="button-color" type="submit">Send Message</button>
         </form>
       </div>
     </div>
 </Router>
 
 <style>
-
-  /* Styling for the header */
-  .header {
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-  }
-
   /* Styling for the form container */
   .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    padding: 20px 40px;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: rgba(51, 51, 51, 0.6);
+    border-radius: 5px;
   }
 
   /* Styling for the form elements */
-  input,
-  textarea,
-  button {
+  input {
     display: block;
-    margin: 10px 0;
-    padding: 10px;
     width: 100%;
-    max-width: 500px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid rgb(0, 0, 0);
     border-radius: 5px;
-    border: none;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    font-size: 16px;
-    background-color: #fff;
-    color: #333;
+    box-sizing: border-box;
+    font-family: "ninjanaruto";
+    color: orange;
+    -webkit-text-stroke: 1px black;
+  }
+  
+  textarea {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-family: "ninjanaruto";
+    color: orange;
+    -webkit-text-stroke: 1px black;
   }
 
-  input:hover,
+  button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgb(34, 27, 166);
+    transition: background-color 0.2s;
+    font-family: "ninjanaruto";
+    color: orange;
+    -webkit-text-stroke: 1px black;
+  }
+
+  .button-color {
+    color: orange;
+  }
+
+  input:hover {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  input::placeholder {
+    color: orange;
+  }
+
   textarea:hover {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  textarea::placeholder {
+    color: orange;
+  }
+
+  h1 {
+    font-size: 60px;
+    margin: 0;
+    font-family: "ninjanaruto";
+    -webkit-text-stroke: 1.5px black;
+    color: orange;
+    padding: 30px;
   }
 
   button {
@@ -95,21 +134,11 @@
     font-size: 14px;
   }
 
-  header {
-    top: 0;
-    z-index: 9999;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: #fff;
+  .form-box {
+    max-width: 400px;
+    margin: 0 auto;
     padding: 20px;
-  }
-
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: #fff;
-    padding: 10px;
-    font-family: "ninjanaruto";
+    background-color: rgba(51, 51, 51, 0.6);
+    border-radius: 5px;
   }
 </style>

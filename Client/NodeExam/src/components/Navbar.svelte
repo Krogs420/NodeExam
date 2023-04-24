@@ -4,8 +4,8 @@
 
 <main>
   <Router primary={false}>
-    <nav>
-      <Link to="/">HOME</Link>
+    <nav class="nav-link">
+      <Link to="/">Home</Link>
       <Link to="/characters">Characters</Link>
       <Link to="/contact">Contact</Link>
       <Link to="/signin">Sign In</Link>
@@ -19,22 +19,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #333;
+    background-color: rgba(51, 51, 51, 0.96);
+    border-radius: 10px;
+    height: 50px;
     color: #fff;
     padding: 10px;
     font-family: "ninjanaruto";
   }
 
-  /* Navbar link styles */
   .nav-link {
-    color: #fff;
+    color: orange !important;
     text-decoration: none;
     margin-right: 20px;
-    font-weight: bold;
-    font-size: 18px;
-  }
-
-  .nav-link:hover {
-    color: orange;
+    font-size: 25px;
   }
 </style>

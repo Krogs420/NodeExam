@@ -41,7 +41,6 @@
     justify-content: center;
     align-items: center;
     -webkit-text-stroke: 1px black;
-    top: 0;
   }
 
   /* Container styles */
@@ -50,6 +49,7 @@
     font-size: 3rem;
     margin: 0;
     font-family: "ninjanaruto";
+    -webkit-text-stroke: 1px black;
     color: orange;
     padding: 30px;
   }
