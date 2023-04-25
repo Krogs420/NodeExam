@@ -1,6 +1,7 @@
 <script>
-  import { Route, Router, Link, useNavigate } from "svelte-navigator";
+  import { Route, Router, Link, useNavigate, useResolvable } from "svelte-navigator";
   import * as Toastr from "toastr";
+  import {user} from "../../store/user.js";
   import "../../../node_modules/toastr/build/toastr.css";
 
   const navigate = useNavigate();
@@ -21,26 +22,27 @@
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(body),
       });
-      navigate("/");
       const data = await response.json();
+      user.set(data.data);
+      localStorage.setItem("user", JSON.stringify($user));
+      navigate("/");
       console.log(data.message);
     } catch {
       Toastr.warning("Unable to sign in");
     }
   }
 
-  /* alert(`Email: ${email}\nPassword: ${password}`); */
 </script>
 
 <div>
   <h1>Sign In</h1>
 </div>
 <form action="/login" on:submit|preventDefault={handleSubmit}>
-  <label for="email">Email</label>
-  <input type="email" id="email" bind:value={mail} required />
+  <label for="mail">Email</label>
+  <input type="mail" id="mail" bind:value={mail} required placeholder="Email" />
 
   <label for="password">Password</label>
-  <input type="password" id="password" bind:value={password} required />
+  <input type="password" id="password" bind:value={password} required placeholder="Password"/>
 
   <button type="submit">Sign In</button>
 </form>
@@ -59,9 +61,10 @@
 
   label {
     display: block;
-    margin-bottom: 5px;
+    margin: 20px;
     font-weight: bold;
     font-family: "ninjanaruto";
+    font-size: 2rem;
     color: orange;
     -webkit-text-stroke: 1px black;
   }
@@ -83,18 +86,36 @@
     display: block;
     width: 100%;
     padding: 10px;
-    background-color: #333;
-    border: 1px solid rgb(0, 0, 0);
+    margin-top: 30px;
+    border: 1px solid black;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.2s;
     font-family: "ninjanaruto";
     color: orange;
+    background: #0c2fdf;
     -webkit-text-stroke: 1px black;
   }
 
   button:hover {
-    background-color: rgb(34, 27, 166);
+    background-color: orange;
+    color: #0c2fdf;
+  }
+
+  input:hover {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  input::placeholder {
+    color: orange;
+  }
+
+  textarea:hover {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  textarea::placeholder {
+    color: orange;
   }
 
   h1 {

@@ -5,7 +5,6 @@
 <body>
   <div class="fixed-div">
     <h1>Konohagakure</h1>
-    <div>
       <div>
         <p>
           "Village Hidden in the Leaves" or "Hidden Leaf Village" is the hidden
@@ -20,10 +19,6 @@
           stability.
         </p>
       </div>
-    </div>
-    <div>
-      <h1>Flemming</h1>
-    </div>
   </div>
 </body>
 

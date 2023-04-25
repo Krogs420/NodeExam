@@ -25,148 +25,99 @@
       });
       const data = await response.json();
       console.log(data.message);
-	  navigate("/");
+      navigate("/");
     } catch {
       Toastr.warning("Unable to sign up");
     }
   }
 </script>
 
-<body>
-  <div class="main">
-    <div class="signup">
-      <form action="/signup" on:submit|preventDefault={checkEmailAndPas}>
-        <label for="chk" aria-hidden="true">Sign up</label>
-        <input
-          type="text"
-          id="username"
-          bind:value={username}
-          required
-          placeholder="User name"
-        />
-        <input
-          type="email"
-          id="mail"
-          bind:value={mail}
-          required
-          placeholder="Email"
-        />
-        <input
-          type="password"
-          id="password"
-          bind:value={password}
-          required
-          placeholder="Password"
-        />
-        <button type="submit" on:click={() => Toastr.success("You did it!")}>
-          Signup
-        </button>
-      </form>
-    </div>
-  </div>
-</body>
+<div>
+  <h1>Sign Up</h1>
+</div>
+<form action="/login" on:submit|preventDefault={checkEmailAndPas}>
+  <label for="username">Username</label>
+  <input type="username" id="username" bind:value={username} required placeholder="Username" />
+
+  <label for="mail">Email</label>
+  <input type="mail" id="mail" bind:value={mail} required placeholder="Email" />
+
+  <label for="password">Password</label>
+  <input type="password" id="password" bind:value={password} required placeholder="Password" />
+
+  <button type="submit">Sign Up</button>
+</form>
 
 <style>
-  @font-face {
+  form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(51, 51, 51, 0.6);
+    border-radius: 5px;
     font-family: "ninjanaruto";
-    src: url(../../../public/njnaruto.ttf);
+    color: orange;
+    -webkit-text-stroke: 1px black;
   }
 
-  * {
-    margin: 0;
-    padding: 0;
-  }
-
-  body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    font-family: "ninjanaruto", sans-serif;
-    background: linear-gradient(to bottom, #0f0c29, #0c2fdf, #24243e);
-  }
-  .main {
-    width: 350px;
-    height: 500px;
-    background: orange;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 5px 20px 50px #000;
-  }
-  #chk {
-    display: none;
-  }
-  .signup {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
   label {
-    -webkit-text-stroke: 0.1px white;
-    color: black;
-    font-size: 2.3em;
-    justify-content: center;
-    display: flex;
-    margin: 60px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.5s ease-in-out;
-  }
-  input {
-    width: 60%;
-    height: 20px;
-    background: #e0dede;
-    justify-content: center;
-    display: flex;
-    margin: 20px auto;
-    padding: 10px;
-    border: none;
-    outline: none;
-    border-radius: 5px;
-  }
-  button {
-    -webkit-text-stroke: 0.1px white;
-    font-family: "ninjanaruto", sans-serif;
-    width: 60%;
-    height: 40px;
-    margin: 10px auto;
-    justify-content: center;
     display: block;
-    color: black;
-    background: #0c2fdf;
-    font-size: 1em;
+    margin-bottom: 5px;
     font-weight: bold;
-    margin-top: 20px;
-    outline: none;
-    border: none;
-    border-radius: 5px;
-    transition: 0.2s ease-in;
-    cursor: pointer;
+    font-family: "ninjanaruto";
+    color: orange;
+    -webkit-text-stroke: 1px black;
   }
+
+  input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-family: "ninjanaruto";
+    color: orange;
+    -webkit-text-stroke: 1px black;
+  }
+
+  label {
+    display: block;
+    margin: 20px;
+    font-weight: bold;
+    font-family: "ninjanaruto";
+    font-size: 2rem;
+    color: orange;
+    -webkit-text-stroke: 1px black;
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 30px;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-family: "ninjanaruto";
+    color: orange;
+    background: #0c2fdf;
+    -webkit-text-stroke: 1px black;
+  }
+
   button:hover {
     background: orange;
-  }
-  .login {
-    height: 460px;
-    background: #0c2fdf;
-    border-radius: 60% / 10%;
-    transform: translateY(-180px);
-    transition: 0.8s ease-in-out;
-  }
-  .login label {
-    color: black;
-    transform: scale(0.6);
+    color: #0c2fdf;
   }
 
-  #chk:checked ~ .login {
-    transform: translateY(-500px);
-  }
-  #chk:checked ~ .login label {
-    transform: scale(1);
-  }
-  #chk:checked ~ .signup label {
-    transform: scale(0.6);
+  h1 {
+    font-size: 60px;
+    margin: 0;
+    font-family: "ninjanaruto";
+    -webkit-text-stroke: 1.5px black;
+    color: orange;
+    padding: 30px;
   }
 </style>

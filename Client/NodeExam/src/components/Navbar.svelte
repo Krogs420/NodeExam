@@ -9,7 +9,7 @@
       <Link to="/characters">Characters</Link>
       <Link to="/contact">Contact</Link>
       <Link to="/signin">Sign In</Link>
-      <Link to="/signin">Sign Up</Link>
+      <Link to="/signup">Sign Up</Link>
     </nav>
   </Router>
 </main>

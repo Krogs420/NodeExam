@@ -1,7 +1,6 @@
 <script>
   import { onMount } from "svelte";
   import { apiData, about } from "../../store/store.js";
-  import Header from "../../components/Header.svelte";
   import { Route, Router, Link } from "svelte-navigator";
 
   let characters = [];

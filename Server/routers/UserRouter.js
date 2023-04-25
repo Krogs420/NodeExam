@@ -28,13 +28,25 @@ router.post("/login", async (req, res) => {
     const {mail, password} = req.body;
     const [rows, fields] = await db.execute(`SELECT * FROM users WHERE mail = ?`, [mail]);
     const encryptedPassword = rows[0].password;
-    const compare = await bcrypt.compare(password, encryptedPassword)
+    const compare = await bcrypt.compare(password, encryptedPassword);
     console.log(rows[0].password);
     if (compare) {
-        //req.session.isLoggedin = true;
-        res.send({ message: "Its a-okay" });
+        const user = rows[0];
+        req.session.admin = user.admin;
+        req.session.userid = user.id;
+        req.session.isLoggedin = true;
+        res.send({ data: {id: user.id, mail: user.mail, username: user.user_name, admin: user.admin }});
     } else {
-        res.send({ message: "Its no good" });
+        res.status(500).send({ message: "Its no good" });
+    }
+});
+
+router.post("/logout", (req, res) => {
+    try {
+        req.session.destroy();
+        res.send({ message: "You have signed out"});
+    } catch {
+        res.status().send("There is a server issue");
     }
 });
 

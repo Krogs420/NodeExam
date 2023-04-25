@@ -40,7 +40,6 @@
 </Router>
 
 <style>
-  /* Styling for the form container */
   .container {
     max-width: 400px;
     margin: 0 auto;
@@ -80,23 +79,26 @@
     display: block;
     width: 100%;
     padding: 10px;
-    border: 1px solid rgb(0, 0, 0);
+    margin-top: 30px;
+    border: 1px solid black;
     border-radius: 5px;
     cursor: pointer;
-    background-color: rgb(34, 27, 166);
     transition: background-color 0.2s;
     font-family: "ninjanaruto";
     color: orange;
+    background: #0c2fdf;
     -webkit-text-stroke: 1px black;
   }
 
-  .button-color {
-    color: orange;
+  button:hover {
+    background-color: orange;
+    color: #0c2fdf;
   }
 
   input:hover {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   }
+
   input::placeholder {
     color: orange;
   }
@@ -118,28 +120,8 @@
     padding: 30px;
   }
 
-  button {
-    background-color: #1c2541;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-  }
-
-  button:hover {
-    background-color: #293d5a;
-  }
-
   ::placeholder {
     color: #999;
     font-size: 14px;
-  }
-
-  .form-box {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: rgba(51, 51, 51, 0.6);
-    border-radius: 5px;
   }
 </style>
