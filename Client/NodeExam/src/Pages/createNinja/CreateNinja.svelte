@@ -1,24 +1,25 @@
 <script>
-  import { Route, Router, Link, useNavigate, useResolvable, } from "svelte-navigator";
+  import { Route, Router, Link, useNavigate, useResolvable } from "svelte-navigator";
   import * as Toastr from "toastr";
   import { user } from "../../store/user.js";
   import "../../../node_modules/toastr/build/toastr.css";
 
   const navigate = useNavigate();
 
-  /* if ($user) {
-    navigate("/");
-    Toastr.info("You are already signed in.");
-  } */
+  let name = "";
+  let age = "";
+  let nation = "";
+  let jutsu = "";
+  let hokage = false;
 
-  let mail = "";
-  let password = "";
-
-  async function handleSubmit() {
-    const url = "http://localhost:8081/login";
+  async function createNinja() {
+    const url = "http://localhost:8081/creator";
     const body = {
-      mail: mail,
-      password: password,
+      name: name,
+      age: age,
+      nation: nation,
+      jutsu: jutsu,
+      hokage: hokage,
     };
 
     try {
@@ -28,38 +29,38 @@
         body: JSON.stringify(body),
       });
       const data = await response.json();
-      user.set(data.data);
-      localStorage.setItem("user", JSON.stringify($user));
-      navigate("/");
       console.log(data.message);
-      Toastr.success("You are now signed in");
+      navigate("/");
     } catch {
-      Toastr.warning("Unable to sign in");
+      Toastr.warning("Unable to sign up");
     }
   }
+
 </script>
 
-<div>
-  <h1>Sign In</h1>
-</div>
-<form action="/login" on:submit|preventDefault={handleSubmit}>
-  <label for="mail">Email</label>
-  <input type="mail" id="mail" bind:value={mail} required placeholder="Email" />
+<h1>Create a ninja</h1>
+<form action="/login" on:submit|preventDefault={createNinja}>
+    <label for="name">Name</label>
+    <input type="name" id="name" bind:value={name} required placeholder="Name" />
+  
+    <label for="age">Age</label>
+    <input type="age" id="age" bind:value={age} required placeholder="Age" />
+  
+    <label for="nation">Nation</label>
+    <input type="nation" id="nation" bind:value={nation} required placeholder="Nation" />
 
-  <label for="password">Password</label>
-  <input
-    type="password"
-    id="password"
-    bind:value={password}
-    required
-    placeholder="Password"
-  />
+    <label for="jutsu">Jutsu</label>
+    <input type="jutsu" id="jutsu" bind:value={jutsu} required placeholder="Jutsu" />
 
-  <button type="submit">Sign In</button>
-</form>
+    <label for="hokage">Hokage</label>
+    <input type="hokage" id="hokage" bind:value={hokage} required placeholder="Hokage" />
+  
+    <button type="submit">Create</button>
+  </form>
 
+  
 <style>
-  form {
+form {
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
@@ -72,10 +73,9 @@
 
   label {
     display: block;
-    margin: 20px;
+    margin-bottom: 5px;
     font-weight: bold;
     font-family: "ninjanaruto";
-    font-size: 2rem;
     color: orange;
     -webkit-text-stroke: 1px black;
   }
@@ -89,6 +89,16 @@
     border-radius: 5px;
     box-sizing: border-box;
     font-family: "ninjanaruto";
+    color: orange;
+    -webkit-text-stroke: 1px black;
+  }
+
+  label {
+    display: block;
+    margin: 20px;
+    font-weight: bold;
+    font-family: "ninjanaruto";
+    font-size: 2rem;
     color: orange;
     -webkit-text-stroke: 1px black;
   }
@@ -109,24 +119,8 @@
   }
 
   button:hover {
-    background-color: orange;
+    background: orange;
     color: #0c2fdf;
-  }
-
-  input:hover {
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  }
-
-  input::placeholder {
-    color: orange;
-  }
-
-  textarea:hover {
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  }
-
-  textarea::placeholder {
-    color: orange;
   }
 
   h1 {
@@ -137,4 +131,5 @@
     color: orange;
     padding: 30px;
   }
+
 </style>

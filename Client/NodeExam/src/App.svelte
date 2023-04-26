@@ -6,6 +6,8 @@
   import SignIn from "./Pages/signIn/SignIn.svelte";
   import Navbar from "./components/Navbar.svelte";
   import SignUp from "./Pages/signUp/SignUp.svelte";
+  import CreateNinja from "./Pages/createNinja/CreateNinja.svelte";
+  import Users from "./Pages/users/Users.svelte";
 </script>
 
 <main>
@@ -21,6 +23,12 @@
     </Route>
     <Route path="/contact">
       <Contact />
+    </Route>
+    <Route path="/creator">
+      <CreateNinja />
+    </Route>
+    <Route path="/users">
+      <Users />
     </Route>
     <Route path="/signin">
       <SignIn />

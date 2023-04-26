@@ -1,5 +1,9 @@
 <script>
   import { Route, Router, Link, useNavigate } from "svelte-navigator";
+
+  function logout() {
+    
+  }
 </script>
 
 <main>
@@ -8,8 +12,11 @@
       <Link to="/">Home</Link>
       <Link to="/characters">Characters</Link>
       <Link to="/contact">Contact</Link>
+      <Link to="/creator">Creator</Link>
+      <Link to="/users">Users</Link>
       <Link to="/signin">Sign In</Link>
       <Link to="/signup">Sign Up</Link>
+      <button on:click={logout}>Logout</button>
     </nav>
   </Router>
 </main>
