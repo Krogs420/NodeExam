@@ -38,17 +38,17 @@
         <Link to="/contact">Contact</Link>
         <Link to="/signin">Sign In</Link>
         <Link to="/signup">Sign Up</Link>
-      {:else if $user}
+      {:else if !$user.admin}
         <Link to="/">Home</Link>
         <Link to="/characters">Characters</Link>
         <Link to="/contact">Contact</Link>
         <Link to="/creator">Creator</Link>
         <button on:click={signout}>Sign out</button>
-      <!-- {:else if $user.admin === true}
+      {:else if $user.admin}
         <Link to="/">Home</Link>
         <Link to="/characters">Characters</Link>
         <Link to="/users">Users</Link>
-        <button on:click={signout}>Sign out</button> -->
+        <button on:click={signout}>Sign out</button>
      {/if}
     </nav>
   </Router>
