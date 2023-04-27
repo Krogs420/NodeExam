@@ -44,6 +44,7 @@
 <style>
   #content {
     display: flex;
+    min-width: 100%;
     justify-content: space-between;
     align-items: center;
     color: #fff;
@@ -69,5 +70,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  main {
+    width: 90vw;
   }
 </style>

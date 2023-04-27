@@ -6,10 +6,10 @@
 
   const navigate = useNavigate();
 
-  /* if ($user) {
+  if ($user) {
     navigate("/");
     Toastr.info("You are already signed in.");
-  } */
+  }
 
   let mail = "";
   let password = "";
@@ -29,6 +29,7 @@
       });
       const data = await response.json();
       user.set(data.data);
+      console.log(data.data)
       localStorage.setItem("user", JSON.stringify($user));
       navigate("/");
       console.log(data.message);
@@ -118,14 +119,6 @@
   }
 
   input::placeholder {
-    color: orange;
-  }
-
-  textarea:hover {
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  }
-
-  textarea::placeholder {
     color: orange;
   }
 

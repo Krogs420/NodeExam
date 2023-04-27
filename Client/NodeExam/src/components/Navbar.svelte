@@ -1,8 +1,31 @@
 <script>
   import { Route, Router, Link, useNavigate } from "svelte-navigator";
+  import toastr from "toastr";
+  import { user } from "../store/user.js";
 
-  function logout() {
-    
+  const navigate = useNavigate();
+
+  async function signout() {
+    try {
+      const response = await fetch(`http://localhost:8081/signout`, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-type": "application/json"
+        }
+      });
+
+      if (response.ok) {
+        navigate("/");
+        user.set(null);
+        localStorage.removeItem("user");
+      } else {
+        const json = await response.json();
+        toastr.warning(json.message);
+      }
+    } catch {
+      toastr.error("You were unable to sign out")
+    }
   }
 </script>
 
@@ -16,7 +39,7 @@
       <Link to="/users">Users</Link>
       <Link to="/signin">Sign In</Link>
       <Link to="/signup">Sign Up</Link>
-      <button on:click={logout}>Logout</button>
+      <button on:click={signout}>Sign out</button>
     </nav>
   </Router>
 </main>

@@ -37,10 +37,10 @@ router.post("/login", async (req, res) => {
     const [rows, fields] = await db.execute(`SELECT * FROM users WHERE mail = ?`, [mail]);
     const encryptedPassword = rows[0].password;
     const compare = await bcrypt.compare(password, encryptedPassword);
-    console.log(rows[0].password);
     if (compare) {
         const user = rows[0];
-        req.session.admin = user.admin;
+        console.log(user.id)
+        req.session.admin = !!user.admin;
         req.session.userid = user.id;
         req.session.isLoggedin = true;
         res.send({ data: {id: user.id, mail: user.mail, username: user.user_name, admin: user.admin }});
@@ -49,7 +49,7 @@ router.post("/login", async (req, res) => {
     }
 });
 
-router.post("/logout", (req, res) => {
+router.post("/signout", (req, res) => {
     try {
         req.session.destroy();
         res.send({ message: "You have signed out"});
@@ -97,6 +97,7 @@ function adminCheck(req, res, next) {
 }
 
 function loggedinCheck(req, res, next) {
+    console.log(req.session.userid)
     if (req.session.isLoggedin !== true) {
         // send 401 error
     }
