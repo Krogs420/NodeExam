@@ -32,14 +32,24 @@
 <main>
   <Router primary={false}>
     <nav class="nav-link">
-      <Link to="/">Home</Link>
-      <Link to="/characters">Characters</Link>
-      <Link to="/contact">Contact</Link>
-      <Link to="/creator">Creator</Link>
-      <Link to="/users">Users</Link>
-      <Link to="/signin">Sign In</Link>
-      <Link to="/signup">Sign Up</Link>
-      <button on:click={signout}>Sign out</button>
+      {#if !$user}
+        <Link to="/">Home</Link>
+        <Link to="/characters">Characters</Link>
+        <Link to="/contact">Contact</Link>
+        <Link to="/signin">Sign In</Link>
+        <Link to="/signup">Sign Up</Link>
+      {:else if $user}
+        <Link to="/">Home</Link>
+        <Link to="/characters">Characters</Link>
+        <Link to="/contact">Contact</Link>
+        <Link to="/creator">Creator</Link>
+        <button on:click={signout}>Sign out</button>
+      <!-- {:else if $user.admin === true}
+        <Link to="/">Home</Link>
+        <Link to="/characters">Characters</Link>
+        <Link to="/users">Users</Link>
+        <button on:click={signout}>Sign out</button> -->
+     {/if}
     </nav>
   </Router>
 </main>

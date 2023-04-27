@@ -26,11 +26,13 @@
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(body),
+        credentials: "include",
       });
       const data = await response.json();
       user.set(data.data);
       console.log(data.data)
       localStorage.setItem("user", JSON.stringify($user));
+      console.log(user)
       navigate("/");
       console.log(data.message);
       Toastr.success("You are now signed in");

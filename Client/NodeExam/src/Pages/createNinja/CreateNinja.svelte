@@ -27,6 +27,7 @@
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(body),
+        credentials: "include",
       });
       const data = await response.json();
       console.log(data.message);

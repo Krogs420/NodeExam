@@ -73,7 +73,7 @@ router.post("/creator", loggedinCheck, async ( req, res) => {
     console.log(req.body)
     console.log(req.session.userid)
     try {
-        const [rows, fields] = await db.execute(`INSERT INTO users(name,age,nation,jutsu,hokage,user_id) VALUES(?, ?, ?, ?, ?, ?);`, [name, age, nation, jutsu, hokage, req.session.userid]);
+        const [rows, fields] = await db.execute(`INSERT INTO ninjas(name,age,nation,jutsu,hokage,user_id) VALUES(?, ?, ?, ?, ?, ?);`, [name, age, nation, jutsu, hokage, req.session.userid]);
         res.send({ message: "Its veri nais" });
     } catch {
         console.log("Øv")
