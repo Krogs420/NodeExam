@@ -41,14 +41,15 @@
       {:else if !$user.admin}
         <Link to="/">Home</Link>
         <Link to="/characters">Characters</Link>
-        <Link to="/contact">Contact</Link>
         <Link to="/creator">Creator</Link>
+        <Link to="/contact">Contact</Link>
         <button on:click={signout}>Sign out</button>
       {:else if $user.admin}
         <Link to="/">Home</Link>
         <Link to="/characters">Characters</Link>
+        <Link to="/clans">Clans</Link>
         <Link to="/users">Users</Link>
-        <button on:click={signout}>Sign out</button>
+        <button class="ignore-css" id="signout" on:click={signout}>Sign out</button>
      {/if}
     </nav>
   </Router>
@@ -73,4 +74,25 @@
     margin-right: 20px;
     font-size: 25px;
   }
+
+  button {
+  display: block;
+  width: 15%;
+  padding: 10px;
+  margin: 0;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-family: "ninjanaruto";
+  font-size: 26px;
+  color: orange;
+  background: #0c2fdf;
+  -webkit-text-stroke: 1px black;
+}
+
+button:hover {
+  background-color: orange;
+  color: #0c2fdf;
+}
 </style>

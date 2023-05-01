@@ -6,13 +6,12 @@ const router = Router();
 
 
 router.get("/mail", async (req, res) => {
-  res.send({message: "Hej"});
+  res.status(200).send({ message: "OK"})
 })
-// POST route for sending email
+
 router.post("/mail", async (req, res) => {
   const { name, mail, message } = req.body;
 
-  console.log("Hello")
   try {
     // Create a transporter object with SMTP settings
     let testAccount = await nodemailer.createTestAccount();
@@ -40,9 +39,8 @@ router.post("/mail", async (req, res) => {
 
     console.log("Message sent: %s", info.messageId);
     console.log("Preview url:%s", nodemailer.getTestMessageUrl(info));
-    res.send("Message sent successfully!");
+    res.status(200).send("Message sent successfully!")
   } catch (error) {
-    console.log(error);
     res.status(500).send("Error sending message. Please try again later.");
   }
 });

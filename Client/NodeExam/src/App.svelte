@@ -4,6 +4,7 @@
   import Characters from "./Pages/characters/Characters.svelte";
   import Contact from "./Pages/contact/Contact.svelte";
   import SignIn from "./Pages/signIn/SignIn.svelte";
+  import Clans from "./Pages/clans/Clans.svelte";
   import Navbar from "./components/Navbar.svelte";
   import SignUp from "./Pages/signUp/SignUp.svelte";
   import CreateNinja from "./Pages/createNinja/CreateNinja.svelte";
@@ -26,6 +27,9 @@
     </Route>
     <Route path="/creator">
       <CreateNinja />
+    </Route>
+    <Route path="/clans">
+      <Clans />
     </Route>
     <Route path="/users">
       <Users />

@@ -20,7 +20,6 @@ router.get("/api/users", adminCheck, async (req, res) => {
 router.get("/api/users/:id", async (req, res) => {
     const id = req.params.id;
     const [rows, fields] = await db.execute(`SELECT * FROM users WHERE id = ?`, [id]);
-    console.log(rows)
     res.send({ data: rows});
 });
 
@@ -39,7 +38,6 @@ router.post("/login", async (req, res) => {
     const compare = await bcrypt.compare(password, encryptedPassword);
     if (compare) {
         const user = rows[0];
-        console.log(user.id)
         req.session.admin = !!user.admin;
         req.session.userid = user.id;
         req.session.isLoggedin = true;
@@ -52,9 +50,9 @@ router.post("/login", async (req, res) => {
 router.post("/signout", (req, res) => {
     try {
         req.session.destroy();
-        res.send({ message: "You have signed out"});
+        res.status(200).send("You have successfully signed up")
     } catch {
-        res.status().send("There is a server issue");
+        res.status(500).send("There is a server issue");
     }
 });
 
@@ -62,29 +60,25 @@ router.post("/signup", async (req, res) => {
     const {mail, username, password} = req.body;
     try{
         const [rows, fields] = await db.execute(`INSERT INTO users(mail,user_name,password,admin) VALUES(?, ?, ?, ?);`, [mail, username, await encryptPassword(password), false]);
-        res.send({ message: "Its veri nais" });
+        res.status(200).send("OK");
     } catch {
-        res.send({ message: "Its not so veri nais" });
+        res.status(500).send("Internal Server Error");
     }
 });
 
 router.post("/creator", loggedinCheck, async ( req, res) => {
     const {name, age, nation, jutsu, hokage} = req.body;
-    console.log(req.body)
-    console.log(req.session.userid)
     try {
         const [rows, fields] = await db.execute(`INSERT INTO ninjas(name,age,nation,jutsu,hokage,user_id) VALUES(?, ?, ?, ?, ?, ?);`, [name, age, nation, jutsu, hokage, req.session.userid]);
-        res.send({ message: "Its veri nais" });
+        res.status(200).send("OK");
     } catch {
-        console.log("Øv")
-        res.send({ message: "Its not so veri nais" });
+        res.status(500).send("Internal Server Error");
     }
 });
 
 router.get("/naruto", async (req, res) => {
     const response = await fetch(`https://naruto-details-proxy.herokuapp.com/clan?name=uzumaki`);
     const data = await response.json();
-    console.log(data);
     res.send(data);
 });
 
@@ -97,7 +91,6 @@ function adminCheck(req, res, next) {
 }
 
 function loggedinCheck(req, res, next) {
-    console.log(req.session.userid)
     if (req.session.isLoggedin !== true) {
         // send 401 error
     }
