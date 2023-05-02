@@ -17,12 +17,6 @@ router.get("/api/users", adminCheck, async (req, res) => {
     }
 });
 
-router.get("/api/users/:id", async (req, res) => {
-    const id = req.params.id;
-    const [rows, fields] = await db.execute(`SELECT * FROM users WHERE id = ?`, [id]);
-    res.send({ data: rows});
-});
-
 router.post("/api/users", async (req, res) => {
     const user = req.body;
     const saltRounds = 12;
@@ -76,11 +70,13 @@ router.post("/creator", loggedinCheck, async ( req, res) => {
     }
 });
 
-router.get("/naruto", async (req, res) => {
-    const response = await fetch(`https://naruto-details-proxy.herokuapp.com/clan?name=uzumaki`);
+router.get("/clans", adminCheck, async (req, res) => {
+    const response = await fetch(`https://api.narutodb.xyz/clan?limit=100`);
     const data = await response.json();
     res.send(data);
 });
+
+
 
 //Middleware
 function adminCheck(req, res, next) {
