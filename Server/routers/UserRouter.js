@@ -70,6 +70,13 @@ router.post("/creator", loggedinCheck, async ( req, res) => {
     }
 });
 
+router.get("/characters", async (req, res) => {
+    const response = await fetch(`https://api.narutodb.xyz/characters?limit=500`);
+    const data = await response.json();
+    res.send(data);
+});
+
+
 router.get("/clans", adminCheck, async (req, res) => {
     const response = await fetch(`https://api.narutodb.xyz/clan?limit=100`);
     const data = await response.json();

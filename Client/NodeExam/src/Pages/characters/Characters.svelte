@@ -5,7 +5,7 @@
   let characters = [];
 
   const fetchCharacters = async () => {
-  const response = await fetch('https://api.narutodb.xyz/character?limit=100');
+  const response = await fetch('https://api.narutodb.xyz/character?limit=500');
   const data = await response.json();
   characters = data.characters.map(character => {
     character.images = character.images.map(image => {
