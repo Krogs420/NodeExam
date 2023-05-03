@@ -1,7 +1,3 @@
-<script>
-  import { Route, Router, Link } from "svelte-navigator";
-</script>
-
 <body>
   <div class="fixed-div">
     <h1>Konohagakure</h1>

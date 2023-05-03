@@ -1,5 +1,4 @@
 import nodemailer from "nodemailer";
-import mailRouter from "../routers/MailRouter.js";
 
      let testAccount = await nodemailer.createTestAccount();
 

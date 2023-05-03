@@ -1,10 +1,13 @@
 <script>
-  import { Route, Router, Link, useNavigate, useResolvable } from "svelte-navigator";
+  import { useNavigate } from "svelte-navigator";
   import * as Toastr from "toastr";
   import { user } from "../../store/user.js";
   import "../../../node_modules/toastr/build/toastr.css";
 
   const navigate = useNavigate();
+  if (!$user) {
+    navigate("/");
+  }
 
   let name = "";
   let age = "";
@@ -29,10 +32,9 @@
         body: JSON.stringify(body),
         credentials: "include",
       });
-      const data = await response.json();
       navigate("/");
     } catch {
-      Toastr.warning("Unable to sign up");
+      Toastr.warning("Unable to create ninja");
     }
   }
 

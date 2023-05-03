@@ -1,6 +1,4 @@
 <script>
-  import { onMount } from "svelte";
-  import { Route, Router, Link } from "svelte-navigator";
 
   let characters = [];
 

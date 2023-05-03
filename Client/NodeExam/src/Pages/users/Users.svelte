@@ -1,6 +1,5 @@
 <script>
-  import { Route, Router, Link, useNavigate, useResolvable } from "svelte-navigator";
-  import toastr, * as Toastr from "toastr";
+  import { useNavigate } from "svelte-navigator";
   import { user } from "../../store/user.js";
   import "../../../node_modules/toastr/build/toastr.css";
   import { onDestroy, onMount } from "svelte";
@@ -27,7 +26,6 @@
 
   const socket = io("ws://localhost:8081");
   socket.on(`users`, (data) => {
-    console.log(data)
     users.push(data);
     users = users;
   });
@@ -38,7 +36,7 @@
 
 </script>
 
-<h1>Admin Area</h1>
+<h1>Users</h1>
 <table>
     <tr>
         <th>Id</th>
@@ -49,7 +47,7 @@
 
     {#each users as user}
         <tr>
-            {#each [...user, ...users] as cell}
+            {#each user as cell}
             <td>{cell}</td>
             {/each}
         </tr>

@@ -1,11 +1,14 @@
 <script>
-    import { Route, Router, Link, useNavigate, useResolvable } from "svelte-navigator";
-    import toastr, * as Toastr from "toastr";
-    import "../../../node_modules/toastr/build/toastr.css";
-    import { onMount } from "svelte";
+  import { useNavigate } from "svelte-navigator";
+  import { user } from "../../store/user.js";
+  import "../../../node_modules/toastr/build/toastr.css";
+  import { onMount } from "svelte";
 
-  
-  
+
+  const navigate = useNavigate();
+  if (!$user) {
+    navigate("/");
+  }
     let ninjas = [];
   
     onMount(async () => {
@@ -13,7 +16,6 @@
       fetch(url)
         .then((response) => response.json())
         .then((data) => {
-            console.log(data)
           ninjas = data.data.map((element) => Object.values(element));
         })
         .catch((error) => {

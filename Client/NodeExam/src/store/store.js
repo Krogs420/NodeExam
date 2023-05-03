@@ -1,3 +1,3 @@
-import { readable, writable, derived } from 'svelte/store';
+import { readable } from 'svelte/store';
 
 export const BASE_URL = readable('http://localhost:8081/');

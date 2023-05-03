@@ -1,5 +1,5 @@
 <script>
-  import { Route, Router, Link, useNavigate } from "svelte-navigator";
+  import { Router, Link, useNavigate } from "svelte-navigator";
   import toastr from "toastr";
   import { user } from "../store/user.js";
 
@@ -11,8 +11,8 @@
         method: "POST",
         credentials: "include",
         headers: {
-          "Content-type": "application/json"
-        }
+          "Content-type": "application/json",
+        },
       });
 
       if (response.ok) {
@@ -24,7 +24,7 @@
         toastr.warning(json.message);
       }
     } catch {
-      toastr.error("You were unable to sign out")
+      toastr.error("You were unable to sign out");
     }
   }
 </script>
@@ -50,8 +50,10 @@
         <Link to="/characters">Characters</Link>
         <Link to="/clans">Clans</Link>
         <Link to="/users">Users</Link>
-        <button class="ignore-css" id="signout" on:click={signout}>Sign out</button>
-     {/if}
+        <button class="ignore-css" id="signout" on:click={signout}
+          >Sign out</button
+        >
+      {/if}
     </nav>
   </Router>
 </main>
@@ -77,23 +79,23 @@
   }
 
   button {
-  display: block;
-  width: 15%;
-  padding: 10px;
-  margin: 0;
-  border: 1px solid black;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  font-family: "ninjanaruto";
-  font-size: 26px;
-  color: orange;
-  background: #0c2fdf;
-  -webkit-text-stroke: 1px black;
-}
+    display: block;
+    width: 15%;
+    padding: 10px;
+    margin: 0;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-family: "ninjanaruto";
+    font-size: 26px;
+    color: orange;
+    background: #0c2fdf;
+    -webkit-text-stroke: 1px black;
+  }
 
-button:hover {
-  background-color: orange;
-  color: #0c2fdf;
-}
+  button:hover {
+    background-color: orange;
+    color: #0c2fdf;
+  }
 </style>

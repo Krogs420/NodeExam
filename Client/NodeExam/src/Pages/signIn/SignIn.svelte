@@ -1,5 +1,5 @@
 <script>
-  import { Route, Router, Link, useNavigate } from "svelte-navigator";
+  import { useNavigate } from "svelte-navigator";
   import * as Toastr from "toastr";
   import { user } from "../../store/user.js";
   import "../../../node_modules/toastr/build/toastr.css";
