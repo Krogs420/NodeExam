@@ -9,6 +9,7 @@
   import SignUp from "./Pages/signUp/SignUp.svelte";
   import CreateNinja from "./Pages/createNinja/CreateNinja.svelte";
   import Users from "./Pages/users/Users.svelte";
+  import Ninjas from "./Pages/ninjas/Ninjas.svelte";
 </script>
 
 <main>
@@ -33,6 +34,9 @@
     </Route>
     <Route path="/users">
       <Users />
+    </Route>
+    <Route path="/ninjas">
+      <Ninjas />
     </Route>
     <Route path="/signin">
       <SignIn />

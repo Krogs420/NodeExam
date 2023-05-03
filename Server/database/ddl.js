@@ -1,8 +1,7 @@
-import * as dotenv from "dotenv";
-dotenv.config();
-import db from "./connection.js";
+import dotenv from "dotenv";
+import db from "./Connection.js"
 import {encryptPassword} from "../util/encryption.js";
-import e from "express";
+dotenv.config();
 
 const isInDeleteMode = true;
 

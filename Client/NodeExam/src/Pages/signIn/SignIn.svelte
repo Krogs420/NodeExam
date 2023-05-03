@@ -1,5 +1,5 @@
 <script>
-  import { Route, Router, Link, useNavigate} from "svelte-navigator";
+  import { Route, Router, Link, useNavigate } from "svelte-navigator";
   import * as Toastr from "toastr";
   import { user } from "../../store/user.js";
   import "../../../node_modules/toastr/build/toastr.css";
@@ -28,11 +28,15 @@
         body: JSON.stringify(body),
         credentials: "include",
       });
-      const data = await response.json();
-      user.set(data.data);
-      localStorage.setItem("user", JSON.stringify($user));
-      navigate("/");
-      Toastr.success("You are now signed in");
+      if (response.ok) {
+        const data = await response.json();
+        user.set(data.data);
+        localStorage.setItem("user", JSON.stringify($user));
+        Toastr.success("You are now signed in");
+        navigate("/");
+      } else {
+        Toastr.warning("Unable to sign in");
+      }
     } catch {
       Toastr.warning("Unable to sign in");
     }
@@ -57,4 +61,3 @@
 
   <button type="submit">Sign In</button>
 </form>
-

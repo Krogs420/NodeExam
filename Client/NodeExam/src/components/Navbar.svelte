@@ -42,6 +42,7 @@
         <Link to="/">Home</Link>
         <Link to="/characters">Characters</Link>
         <Link to="/creator">Creator</Link>
+        <Link to="/ninjas">Ninjas</Link>
         <Link to="/contact">Contact</Link>
         <button on:click={signout}>Sign out</button>
       {:else if $user.admin}

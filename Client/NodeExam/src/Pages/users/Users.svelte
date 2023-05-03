@@ -49,7 +49,7 @@
 
     {#each users as user}
         <tr>
-            {#each user as cell}
+            {#each [...user, ...users] as cell}
             <td>{cell}</td>
             {/each}
         </tr>
