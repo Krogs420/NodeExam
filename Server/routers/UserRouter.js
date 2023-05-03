@@ -109,13 +109,24 @@ router.post("/signup", async (req, res) => {
       [mail, username, await encryptPassword(password), false]
     );
 
-    const [users] = await db.execute(`SELECT * FROM users WHERE users.id=?;`, [response.insertId]);
+    // Socket
+    const [users] = await db.execute(`SELECT * FROM users WHERE users.id=?;`, [
+      response.insertId,
+    ]);
 
     const io = req.app.get("io");
-        users.forEach((user) => {
-            list.push({id: user.id, username: user.user_name, mail: user.mail, admin: user.admin});
-        });
-        io.emit(`users`, users);
+    users.forEach((user) => {
+      list.push({
+        id: user.id,
+        username: user.user_name,
+        mail: user.mail,
+        admin: user.admin,
+      });
+    });
+    io.emit(`users`, users);
+
+    // Socket slut
+    
     res.status(200).send({ message: "OK" });
   } catch (err) {
     return res
