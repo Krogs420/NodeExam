@@ -25,7 +25,6 @@
         credentials: "include",
       });
       const data = await response.json();
-
       navigate("/");
     } catch {
       Toastr.warning("Unable to sign up");

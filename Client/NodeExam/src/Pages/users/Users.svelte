@@ -3,7 +3,8 @@
   import toastr, * as Toastr from "toastr";
   import { user } from "../../store/user.js";
   import "../../../node_modules/toastr/build/toastr.css";
-  import { onMount } from "svelte";
+  import { onDestroy, onMount } from "svelte";
+  import io from "socket.io-client";
 
   const navigate = useNavigate();
   if ($user?.admin !== 1) {
@@ -23,6 +24,18 @@
         return [];
       });
   });
+
+  const socket = io("ws://localhost:8081");
+  socket.on(`users`, (data) => {
+    console.log(data)
+    users.push(data);
+    users = users;
+  });
+
+  onDestroy(() => {
+    socket.close();
+  });
+
 </script>
 
 <h1>Admin Area</h1>

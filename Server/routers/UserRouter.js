@@ -53,10 +53,19 @@ router.post("/signout", (req, res) => {
 router.post("/signup", async (req, res) => {
     const {mail, username, password} = req.body;
     try{
-        const [rows, fields] = await db.execute(`INSERT INTO users(mail,user_name,password,admin) VALUES(?, ?, ?, ?);`, [mail, username, await encryptPassword(password), false]);
-        res.status(200).send("OK");
+        const [response, _] = await db.execute(`INSERT INTO users(mail,user_name,password,admin) VALUES(?, ?, ?, ?);`, [mail, username, await encryptPassword(password), false]);
+        res.status(200).send({ message: "OK" });
+
+        const [users] = await db.execute(`SELECT * FROM users WHERE users.id=?;`, [response.insertId]);
+
+        const io = req.app.get("io");
+        users.forEach((user) => {
+            list.push({id: user.id, username: user.user_name, mail: user.mail, admin: user.admin});
+        });
+        io.emit(`users`, users);
+        return
     } catch {
-        res.status(500).send("Internal Server Error");
+        return res.status(500).send("Internal Server Error");
     }
 });
 

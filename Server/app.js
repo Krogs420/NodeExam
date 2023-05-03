@@ -3,6 +3,8 @@ import cors from "cors";
 import * as dotenv from "dotenv";
 import helmet from "helmet";
 import session from "express-session";
+import { Server } from "socket.io";
+import { createServer } from "http";
 
 
 dotenv.config();
@@ -18,12 +20,24 @@ app.use(ContactRouter);
 import UserRouter from "./routers/UserRouter.js";
 app.use(UserRouter);
 
+const httpServer = createServer(app);
+const io = new Server(httpServer, {
+    cors: {
+        origin: `http://localhost:5173`,
+        credentials: true
+    }
+});
+
+app.set("io", io);
+
+io.on("connection", (socket) => {
+});
 
 
 const PORT = process.env.PORT || 8081;
-const server = app.listen(PORT, (error) => {
+const server = httpServer.listen(PORT, (error) => {
     if (error) {
         console.log(error);
     }
     console.log("Server is running on port", server.address().port);
-});
+});  
