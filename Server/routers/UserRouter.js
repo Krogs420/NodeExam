@@ -135,19 +135,6 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-router.post("/creator", loggedinCheck, async (req, res) => {
-  const { name, age, nation, jutsu, hokage } = req.body;
-  try {
-    const [rows, fields] = await db.execute(
-      `INSERT INTO ninjas(name,age,nation,jutsu,hokage,user_id) VALUES(?, ?, ?, ?, ?, ?);`,
-      [name, age, nation, jutsu, hokage, req.session.userid]
-    );
-    res.status(200).send("OK");
-  } catch {
-    res.status(500).send("Internal Server Error");
-  }
-});
-
 //Middleware
 function adminCheck(req, res, next) {
   if (req.session.admin !== true) {

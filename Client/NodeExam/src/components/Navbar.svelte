@@ -33,25 +33,24 @@
   <Router primary={false}>
     <nav class="nav-link">
       {#if !$user}
-        <Link to="/">Home</Link>
-        <Link to="/characters">Characters</Link>
-        <Link to="/contact">Contact</Link>
-        <Link to="/signin">Sign In</Link>
-        <Link to="/signup">Sign Up</Link>
+        <Link to="/">Forside</Link>
+        <Link to="/indlæg">Indlæg</Link>
+        <Link to="/kurser">Kurser</Link>
+        <Link to="/signin">Log ind</Link>
+        <Link to="/signup">Opret</Link>
       {:else if !$user.admin}
-        <Link to="/">Home</Link>
-        <Link to="/characters">Characters</Link>
-        <Link to="/creator">Creator</Link>
-        <Link to="/ninjas">Ninjas</Link>
-        <Link to="/contact">Contact</Link>
-        <button on:click={signout}>Sign out</button>
+        <Link to="/">Forside</Link>
+        <Link to="/indlæg">Indlæg</Link>
+        <Link to="/kurser">Kurser</Link>
+        <Link to="/kontakt">Kontakt</Link>
+        <button on:click={signout}>Log ud</button>
       {:else if $user.admin}
-        <Link to="/">Home</Link>
-        <Link to="/characters">Characters</Link>
-        <Link to="/clans">Clans</Link>
+        <Link to="/">Forside</Link>
+        <Link to="/indlæg">Indlæg</Link>
+        <Link to="/kurser">Kurser</Link>
         <Link to="/users">Users</Link>
         <button class="ignore-css" id="signout" on:click={signout}
-          >Sign out</button
+          >Log ud</button
         >
       {/if}
     </nav>

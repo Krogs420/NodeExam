@@ -5,7 +5,8 @@ dotenv.config();
 
 const isInDeleteMode = true;
 
-db.execute(`DROP TABLE IF EXISTS ninjas;`);
+db.execute(`DROP TABLE IF EXISTS kurser;`);
+db.execute(`DROP TABLE IF EXISTS indlæg;`);
 db.execute(`DROP TABLE IF EXISTS users;`);
 
 
@@ -18,15 +19,18 @@ db.execute(`CREATE TABLE IF NOT EXISTS users(
     admin BOOLEAN NOT NULL
 );`);
 
-db.execute(`CREATE TABLE IF NOT EXISTS ninjas(
-    ninja_id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR (255) NOT NULL,
-    age INTEGER NOT NULL,
-    nation VARCHAR(255) NOT NULL,
-    jutsu VARCHAR (255) NOT NULL,
-    hokage BOOLEAN NOT NULL,
+db.execute(`CREATE TABLE IF NOT EXISTS kurser(
+    kursus_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    type VARCHAR (255) NOT NULL,
+    pris INTEGER NOT NULL,
+);`); 
+
+db.execute(`CREATE TABLE IF NOT EXISTS indlæg(
+    indlæg_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    type VARCHAR (255) NOT NULL,
+    delivery_time INTEGER NOT NULL,
+    pris INTEGER NOT NULL,
     user_id INTEGER NOT NULL,
-    CONSTRAINT fk_users_ninja FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );`); 
 
 if (isInDeleteMode) {
@@ -34,8 +38,6 @@ if (isInDeleteMode) {
     db.execute(`INSERT INTO users(mail, user_name, password, admin) VALUES (?, ?, ?, ?);`, [process.env.ADMIN_MAIL, "Minato", await encryptPassword(process.env.ADMIN_PASSWORD), true]);
     db.execute(`INSERT INTO users(mail, user_name, password, admin) VALUES (?, ?, ?, ?);`, [process.env.USER_MAIL, "Sasuke", await encryptPassword(process.env.USER_PASSWORD), false]);
     db.execute(`INSERT INTO users(mail, user_name, password, admin) VALUES (?, ?, ?, ?);`, [process.env.SECOND_USER_MAIL, "Naruto", await encryptPassword(process.env.SECOND_USER_PASSWORD), false]);
-
-    db.execute(`INSERT INTO ninjas(name, age, nation, jutsu, hokage, user_id) VALUE (?, ?, ?, ?, ?, ?);`, ["Zuko", 69, "Fire", "Fireball", false, 1]);
 
 }
 
